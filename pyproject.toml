@@ -21,9 +21,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/93Cidiebere/pyedahelper"
-Repository = "https://github.com/93Chidiebere/pyedahelper"
-Documentation = "https://pypi.org/project/pyedahelper/"
+Homepage = "https://github.com/93Chidiebere/pyedahelper-Python-EDA-Helper"
+Repository = "https://github.com/93Chidiebere/pyedahelper-Python-EDA-Helper.git"
+Documentation = "https://github.com/93Chidiebere/pyedahelper-Python-EDA-Helper/blob/main/README.md/"
 
 [tool.setuptools.packages.find]
 where = ["."]
