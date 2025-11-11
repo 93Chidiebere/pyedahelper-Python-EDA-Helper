@@ -1,9 +1,13 @@
-# 🧠 pyedahelper — Simplify Your Exploratory Data Analysis (EDA)
+# 🧠 pyedahelper - Simplify Your Exploratory Data Analysis (EDA)
 
-**pyedahelper** is an educational and practical Python library designed to make **Exploratory Data Analysis (EDA)** simple, guided, and fast — especially for **data analysts, students, and early-career data scientists**.
+**pyedahelper** is an educational and practical Python library designed to make **Exploratory Data Analysis (EDA)** simple, guided, and fast, especially for **data analysts, students, and early-career data scientists** who want to spend more time analyzing data and less time remembering syntax.
 
-It combines:
+It's a lightweight, educational, and intelligent Python library that helps you perform Exploratory Data Analysis (EDA) faster — with guided suggestions, ready-to-use utilities, and clean visualizations.
+
+
+🌟 Key Features:
 - ⚡ A **smart EDA cheat sheet** (interactive and collapsible),
+- 💬 AI-guided EDA assistant — suggests the next logical step (e.g., “View top rows with df.head()”).
 - 🧩 A suite of **data tools** for real-world EDA tasks (loading, cleaning, feature engineering, visualization, and summaries),
 - 💬 Handy **code hints and examples** you can copy directly into your notebook.
 
@@ -11,9 +15,9 @@ It combines:
 
 ## 🌍 Why pyedahelper?
 
-Performing EDA often involves repeating the same code patterns, from loading data and checking for missing values to feature scaling and visualizing trends.
+Performing EDA often involves the use of numerous syntaxes to understand the dataset, it forces the narrative that good data professionals are those who know all the *Python syntaxes* by heart rather than those who can interprete accurately, the output of each of the EDA steps. And more importantly, Data Analysts spend more than 80% of their analytics time on iterative *EDA*, some of these hours spent checking documentary and *Googling* stuffs.
 
-`pyedahelper` solves this by combining **ready-to-use functions** for your data workflow with **inline learning** — you can *see, learn, and apply* the same steps.
+`pyedahelper` solves this by combining **ready-to-use functions** for your data workflow, AI-powered guide with **inline learning** — you can *see, learn, and apply* the same steps.
 
 ---
 
@@ -21,7 +25,7 @@ Performing EDA often involves repeating the same code patterns, from loading dat
 
 ```bash
 
-pip install pyedahelper
+pip install pyedahelper==1.0.2
 
 ```
 
@@ -36,84 +40,69 @@ pip install --upgrade pyedahelper
 
 ``` python
 
-import pyedahelper as eda
+import edahelper as eda
+import pandas as pd
 
-# 📚 Show the interactive EDA cheat-sheet
-eda.core.show()
+# Load your dataset
+df = pd.read_csv("data.csv")
+
+# 📚 Display the interactive EDA cheat-sheet
+eda.show() -- for experienced analysts or
+eda.core.show() -- for total newbies
+
+# 🔍 Start guided suggestion
+eda.next("read_csv")   # Suggests: "View first rows with df.head()"
 
 # 💡 View an example command with short explanation
 eda.core.example("describe")
-
-# 🔍 List all available EDA topics
-eda.core.topics()
 ```
 
-# 🧰 The Tools Module
+From there, the assistant automatically continues:
 
-pyedahelper.tools provides practical helper functions grouped into EDA phases.
-Each can be imported individually or through the parent module.
+```bash
+df.head() → df.columns → df.shape → df.info() → df.describe() → ...
 
-## 1️⃣ Data Loading
+```
+If you want to skip a suggestion, simply type "Next".
 
-Load data from CSV, Excel, JSON, SQL, or Parquet.
 
+# 🔍 Modules Overview
+
+1️⃣ EDA Guidance (AI Suggestion System)
+
+The AI-powered step recommender helps complete beginners know what to do next.
+
+Example flow:
 ```python
-
-from pyedahelper import tools as t
-
-# Load a CSV file
-df = t.data_loading.load_csv("data/sales.csv")
-
-# Load from Excel
-df = t.data_loading.load_excel("data/sales.xlsx", sheet_name="Sheet1")
-```
-## 2️⃣ Data Overview
-
-Get an immediate feel of your dataset: missing values, data types, numeric summaries, etc.
-
-```python
-
-t.data_overview.quick_summary(df)
-t.data_overview.show_missing(df)
-t.data_overview.numeric_overview(df)
+eda.next("read_csv")   # Suggests df.head()
+eda.next("head")       # Suggests df.columns
+eda.next("columns")    # Suggests df.shape
 
 ```
-📊 _Returns insights such as top null columns, unique counts, and numeric distribution summaries_
 
-## 3️⃣ Data Cleaning
+It covers:
 
-Quick utilities for fixing missing data and inconsistent data types.
+. Dataset overview (head, columns, shape, info, describe)
+
+. Missing values (isnull, fillna, dropna)
+
+. Data cleaning (duplicated, astype, replace)
+
+. Visualization (plot_distribution, scatterplot, plot_correlation)
+
+. Feature prep and modeling steps (label_encode, split, fit_model, predict)
+
+
+## 5️⃣ Visualization Module
+
+Functions for exploring and visualizing data quickly.
 
 ``` python
+from edahelper import visualization as vis
 
-t.data_cleaning.fill_missing(df, strategy="mean")
-t.data_cleaning.drop_duplicates(df)
-t.data_cleaning.convert_dtype(df, "Date", "datetime")
-
-```
-💧 _Simple, consistent wrappers to keep cleaning code readable_.
-
-## 4️⃣ Feature Engineering
-
-Encode categorical data, scale numeric features, and prepare your dataset for modeling.
-
-``` python
-
-t.feature_engineering.encode_label(df, "Gender")
-t.feature_engineering.encode_onehot(df, "City")
-t.feature_engineering.scale_numeric(df)
-
-```
-⚙️ _Includes basic preprocessing using scikit-learn’s encoders and scalers_.
-
-## 5️⃣ Visualization
-
-Instant charts and quick patterns for EDA insights.
-
-``` python
-t.visualization.plot_correlation(df)
-t.visualization.plot_distribution(df, "Age")
-t.visualization.scatter(df, "Age", "Income", hue="Gender")
+vis.plot_correlation(df)
+vis.plot_distribution(df, "Age")
+vis.scatter(df, "Age", "Income", hue="Gender")
 
 ```
 🎨 _Uses matplotlib and seaborn under the hood for fast, clean plots._
@@ -136,71 +125,37 @@ Visualization
 Feature Engineering
 NumPy & sklearn tips
 
-You can also view specific examples:
-
-``` python
-
-eda.core.example("pivot")
-```
-
-Output
-
-``` sql
-Aggregation & Grouping — Pivot table
-  pd.pivot_table(df, index='col', values='val', aggfunc='mean')
-
-```
-
-## 💬 Hints
-
-A mini hint engine for quick reminders:
-
-``` bash
-
-eda.core.get_hint("describe")
-# "After df.describe(), check df.isnull().sum() and df.dtypes."
-
-```python
 
 ## 🧑🏽‍💻 Example Workflow
 
+```
 import pyedahelper as eda
-from pyedahelper import tools as t
+import pandas as pd
 
-# Load your data
-df = t.data_loading.load_csv("transactions.csv")
+# Load data
+df = pd.read_csv("sales.csv")
 
-# Quick overview
-t.data_overview.quick_summary(df)
-
-# Clean
-df = t.data_cleaning.fill_missing(df, "mean")
-
-# Feature engineering
-df = t.feature_engineering.encode_label(df, "AccountType")
-
-# Visualize
-t.visualization.plot_correlation(df)
-
-# Learn syntax while you work
-eda.core.example("groupby")
+# Start guided mode
+eda.next("read_csv")    # Suggests df.head()
+eda.next('head')        # Suggests df.info()
 
 ```
+
 
 ## 📦 Project Structure
 
 ```ardiuno
+
 pyedahelper/
 │
-├── __init__.py
-├── core.py              # cheat sheet + examples
-├── show.py              # handles display logic
-├── tools.py             # shared utilities
-├── data_loading.py
-├── data_overview.py
-├── data_cleaning.py
-├── feature_engineering.py
-└── visualization.py
+├── __init__.py              # Main entrypoint
+├── core.py                  # Cheat-sheet + examples
+├── show.py                  # Display logic
+├── stats_summary.py         # Dataset summary helpers
+├── visualization.py         # Quick plots (hist, scatter, heatmap)
+├── nextstep.py              # AI-guided EDA assistant (eda.next)
+└── __init__.py              # Exports unified functions
+
 ```
 
 # 🛠 Requirements
@@ -230,7 +185,7 @@ We welcome contributions — bug fixes, new EDA tools, or notebook examples.
 ## 🔗 Links
 
 📦 PyPI: https://pypi.org/project/pyedahelper/
-💻 GitHub: Coming soon
+💻 GitHub: https://github.com/93Chidiebere/pyedahelper-Python-EDA-Helper
 ✉️ Author: Chidiebere V. Christopher
 
 🚀 _Learn. Explore. Analyze. Faster._
