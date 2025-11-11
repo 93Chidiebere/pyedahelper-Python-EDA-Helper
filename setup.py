@@ -19,10 +19,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="pyedahelper",
-    version="1.0.2",
-    author="Chidiebere Christopher",
+    version="1.0.3",
+    author="Chidiebere V. Christopher",
     author_email="vchidiebere.vc@gmail.com",
-    description="An interactive cheat sheet for exploratory data analysis (EDA), and tools for data visualization, cleaning and feature engineering.",
+    description="An interactive cheat sheet, AI-powered guide for exploratory data analysis (EDA), and tools for data visualization, cleaning and feature engineering.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
