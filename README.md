@@ -11,7 +11,7 @@ It's a lightweight, educational, and intelligent Python library that helps you p
 - 🧩 A suite of **data tools** for real-world EDA tasks (loading, cleaning, feature engineering, visualization, and summaries),
 - 💬 Handy **code hints and examples** you can copy directly into your notebook.
 
----
+
 
 ## 🌍 Why pyedahelper?
 
@@ -19,13 +19,13 @@ Performing EDA often involves the use of numerous syntaxes to understand the dat
 
 `pyedahelper` solves this by combining **ready-to-use functions** for your data workflow, AI-powered guide with **inline learning** — you can *see, learn, and apply* the same steps.
 
----
+
 
 ## ⚙️ Installation
 
 ```bash
 
-pip install pyedahelper==1.0.2
+pip install pyedahelper==1.0.4
 
 ```
 
@@ -70,27 +70,92 @@ If you want to skip a suggestion, simply type "Next".
 
 1️⃣ EDA Guidance (AI Suggestion System)
 
-The AI-powered step recommender helps complete beginners know what to do next.
+The `next()` method in **pyedahelper** provides *contextual next-step suggestions* for your data analysis workflow.
 
-Example flow:
+Instead of remembering long commands, simply call:
 ```python
-eda.next("read_csv")   # Suggests df.head()
-eda.next("head")       # Suggests df.columns
-eda.next("columns")    # Suggests df.shape
+eda.next("read_csv")
+```
+…and it will suggest the next logical step in your EDA, cleaning, visualization, or modeling process.
+
+Below is a list of common helper keywords and what next() will suggest for each stage of analysis:
+
+## 🔹 Basic EDA
+
+```ardiuno
+| Keyword    | Suggestion                                                         |
+| ---------- | ------------------------------------------------------------------ |
+| `read_csv` | View first rows with `df.head()`                                   |
+| `head`     | Check column names with `df.columns`                               |
+| `columns`  | See shape (rows, columns) using `df.shape`                         |
+| `shape`    | Get column data types with `df.info()`                             |
+| `info`     | Summarize numeric data with `df.describe()`                        |
+| `describe` | Check for missing values using `df.isnull().sum()`                 |
+| `isnull`   | Get total missing values count using `df.isnull().sum()`           |
+| `sum`      | Fill missing values using `df.fillna()` or drop with `df.dropna()` |
 
 ```
 
-It covers:
+## 🔹 Missing Values Handling
 
-. Dataset overview (head, columns, shape, info, describe)
+```ardiuno
+| Keyword            | Suggestion                                                                  |
+| ------------------ | --------------------------------------------------------------------------- |
+| `fillna`           | Try filling missing values by data type: numeric, categorical, or datetime. |
+| `fill_numeric`     | Fill numeric NaNs with `df['col'].fillna(df['col'].mean())`                 |
+| `fill_categorical` | Fill categorical NaNs with `df['col'].fillna(df['col'].mode()[0])`          |
+| `fill_datetime`    | Fill datetime NaNs with `df['col'].fillna(df['col'].median())`              |
+| `dropna`           | Drop missing rows using `df.dropna()` if too many missing values exist.     |
 
-. Missing values (isnull, fillna, dropna)
+```
 
-. Data cleaning (duplicated, astype, replace)
+## 🔹 Data Cleaning
 
-. Visualization (plot_distribution, scatterplot, plot_correlation)
+```ardiuno
+| Keyword           | Suggestion                                                |
+| ----------------- | --------------------------------------------------------- |
+| `duplicated`      | Check for duplicate rows using `df.duplicated().sum()`    |
+| `drop_duplicates` | Remove duplicates with `df.drop_duplicates(inplace=True)` |
+| `replace`         | Replace wrong entries with `df.replace({'old':'new'})`    |
+| `astype`          | Convert columns to proper data types using `df.astype()`  |
 
-. Feature prep and modeling steps (label_encode, split, fit_model, predict)
+```
+## 🔹 Visualization
+```ardiuno
+| Keyword             | Suggestion                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------------- |
+| `plot_distribution` | Plot column distributions using `sns.histplot(df['col'])`                                       |
+| `plot_correlation`  | Visualize correlations using `sns.heatmap(df.corr())`                                           |
+| `scatterplot`       | Scatter two numeric variables using `sns.scatterplot(x, y, data=df)`                            |
+| `cat_num_plot`      | Use `sns.boxplot(x='Category', y='Value', data=df)` for categorical-numerical plots.            |
+| `cat_cat_plot`      | Use `sns.countplot(x='Category1', hue='Category2', data=df)` for categorical-categorical plots. |
+| `num_num_plot`      | Use `sns.jointplot(x='X', y='Y', data=df)` for numerical-numerical relationships.               |
+
+```
+## 🔹 Feature Engineering
+```ardiuno
+| Keyword         | Suggestion                                                              |
+| --------------- | ----------------------------------------------------------------------- |
+| `label_encode`  | Label encode with `LabelEncoder()` for categorical columns.             |
+| `onehot_encode` | Use `pd.get_dummies(df, columns=['col'])` for one-hot encoding.         |
+| `scale_numeric` | Standardize numerical features using `StandardScaler().fit_transform()` |
+
+```
+
+## 🔹 Modeling
+
+```ardiuno
+| Keyword                 | Suggestion                                                                |
+| ----------------------- | ------------------------------------------------------------------------- |
+| `train_test_split`      | Split data using `train_test_split(X, y, test_size=0.2, random_state=42)` |
+| `fit_model`             | Train a model like `LogisticRegression().fit(X_train, y_train)`           |
+| `predict`               | Predict outcomes with `model.predict(X_test)`                             |
+| `classification_report` | Evaluate performance using `classification_report(y_test, y_pred)`        |
+| `confusion_matrix`      | Plot confusion matrix with `sns.heatmap(confusion_matrix(...))`           |
+
+```
+
+# This feature helps beginners and professionals alike stay productive and focused on insights rather than remembering syntax.
 
 
 ## 5️⃣ Visualization Module
@@ -111,7 +176,8 @@ vis.scatter(df, "Age", "Income", hue="Gender")
 
 When you forget a syntax, simply call:
 ``` python
-eda.core.show()
+eda.core.show() or
+eda.core_show()
 
 ```
 
