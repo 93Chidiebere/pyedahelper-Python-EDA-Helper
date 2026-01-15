@@ -19,13 +19,29 @@ Performing EDA often involves the use of numerous syntaxes to understand the dat
 
 `pyedahelper` solves this by combining **ready-to-use functions** for your data workflow, AI-powered guide with **inline learning** — you can *see, learn, and apply* the same steps.
 
+## ✨ What Problem Does pyedahelper Solve?
+
+**Exploratory Data Analysis (EDA) is essential, but repetitive.**
+
+Across projects, users repeatedly:
+
+- Forget basic pandas syntax (df.info(), df.describe(), df.groupby())
+
+- Run the same plots without understanding what matters
+
+- Miss data issues that affect modeling readiness
+
+- Lose time recalling workflows rather than reasoning about data
+
+**pyedahelper addresses this by guiding users through EDA as a logical process, not a memory test.**
+
 
 
 ## ⚙️ Installation
 
 ```bash
 
-pip install pyedahelper==1.0.4
+pip install pyedahelper
 
 ```
 
@@ -176,8 +192,7 @@ vis.scatter(df, "Age", "Income", hue="Gender")
 
 When you forget a syntax, simply call:
 ``` python
-eda.core.show() or
-eda.core_show()
+eda.show()
 
 ```
 
@@ -195,32 +210,38 @@ NumPy & sklearn tips
 ## 🧑🏽‍💻 Example Workflow
 
 ```
-import pyedahelper as eda
 import pandas as pd
+import edahelper as eda
+from edahelper import inspect
 
-# Load data
-df = pd.read_csv("sales.csv")
+df = pd.read_csv("data.csv")
 
-# Start guided mode
-eda.next("read_csv")    # Suggests df.head()
-eda.next('head')        # Suggests df.info()
+eda.next("read_csv")
+df.head()
+
+eda.next("head")
+df.columns
+
+eda.next("columns")
+df.info()
+
+inspect(df)
 
 ```
 
 
 ## 📦 Project Structure
 
-```ardiuno
+```text
 
-pyedahelper/
+edahelper/
 │
-├── __init__.py              # Main entrypoint
-├── core.py                  # Cheat-sheet + examples
-├── show.py                  # Display logic
-├── stats_summary.py         # Dataset summary helpers
-├── visualization.py         # Quick plots (hist, scatter, heatmap)
-├── nextstep.py              # AI-guided EDA assistant (eda.next)
-└── __init__.py              # Exports unified functions
+├── __init__.py
+├── core.py        # examples, topics, hints
+├── show.py        # display utilities
+├── nextstep.py   # guided workflow engine
+├── inspector.py  # decision-oriented EDA checks
+
 
 ```
 
@@ -236,7 +257,9 @@ rich (for colored terminal output)
 
 ## 🧾 License
 
-MIT License © 2025 Chidiebere Christopher
+MIT License © 2025
+
+Chidiebere V. Christopher
 Feel free to fork, contribute, or use it in your analytics workflow!
 
 ## 🌟 Contributing
@@ -255,4 +278,4 @@ We welcome contributions — bug fixes, new EDA tools, or notebook examples.
 ✉️ Author: Chidiebere V. Christopher
 
 🚀 _Learn. Explore. Analyze. Faster._
-_pyedahelper — your friendly companion for every EDA project._
+_pyedahelper — Stop remembering syntax. Start reasoning about data._
