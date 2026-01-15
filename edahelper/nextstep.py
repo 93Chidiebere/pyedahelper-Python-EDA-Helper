@@ -34,6 +34,27 @@ class EdaGuide:
             ("replace", "Replace wrong entries with `df.replace({'old':'new'})`"),
             ("astype", "Convert columns to proper dtypes using `df.astype()`"),
 
+            # === Selection ===
+            ("loc", "Select rows or columns by label using `df.loc[...]`"),
+            ("iloc", "Select rows or columns by position using `df.iloc[...]`"),
+            ("query", "Filter rows using SQL-like syntax with `df.query()`"),
+
+            # === Aggregation ===
+            ("groupby", "Group data for aggregation using `df.groupby()`"),
+            ("agg", "Apply multiple aggregations using `df.agg()`"),
+            ("value_counts", "Count occurrences using `df.value_counts()`"),
+
+            # === Transformation ===
+            ("merge", "Join datasets using `pd.merge()`"),
+            ("concat", "Combine datasets using `pd.concat()`"),
+            ("pivot_table", "Reshape data using `pd.pivot_table()`"),
+            ("sort_values", "Order data using `df.sort_values()`"),
+            ("apply", "Apply custom transformations using `df.apply()`"),
+
+            # === Export ===
+            ("to_excel", "Export results using `df.to_excel()`"),
+            ("to_csv", "Save processed data using `df.to_csv()`"),
+
             # === Visualization ===
             ("plot_distribution", "Plot column distributions using `sns.histplot(df['col'])`"),
             ("plot_correlation", "Visualize correlations using `sns.heatmap(df.corr())`"),
@@ -54,8 +75,10 @@ class EdaGuide:
             ("classification_report", "Evaluate performance using `classification_report(y_test, y_pred)`"),
             ("confusion_matrix", "Plot confusion matrix with `sns.heatmap(confusion_matrix(...))`"),
 
-            ("done", "🎉 Great job! You've completed the analysis pipeline!")
+            ("done", "Great job! You've completed the analysis pipeline!")
         ]
+        
+        
         self.step_keys = [k for k, _ in self.steps]
         self.current_index = None
         
