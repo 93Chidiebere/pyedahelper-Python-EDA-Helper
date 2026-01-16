@@ -99,16 +99,23 @@ class EDAInspector:
     # ==================================================
 
     def _duplicate_diagnostics(self) -> Dict[str, Any]:
-        dup_mask = self.df.duplicated()
+        # Exclude the preserved index column from duplicate checks
+        data_cols = [c for c in self.df.columns if c != "index"]
+
+        dup_mask = self.df.duplicated(subset=data_cols, keep="first")
+
         indices = self.df.loc[dup_mask, "index"].tolist()
 
         return {
             "duplicate_count": int(dup_mask.sum()),
             "duplicate_pct": round(float(dup_mask.mean()), 4),
             "row_indices_sample": indices[:MAX_INDEX_SAMPLE],
-            "recommended_action": "deduplicate_rows" if dup_mask.any() else "none"
+            "recommended_action": (
+                "deduplicate_rows" if dup_mask.any() else "none"
+            )
         }
 
+    
     # ==================================================
     # 3. Constant & low-variance columns
     # ==================================================
