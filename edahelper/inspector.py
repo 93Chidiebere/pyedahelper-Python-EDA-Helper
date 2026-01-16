@@ -228,7 +228,7 @@ class EDAInspector:
         for col in self.df.select_dtypes(include="object"):
             ratio = self.df[col].nunique(dropna=True) / len(self.df)
             if ratio > 0.8:
-                risks[col] = {
+                risks[col] = { # type: ignore
                     "unique_ratio": round(ratio, 4),
                     "risk": "high_cardinality_or_id_like",
                     "recommended_action": "drop_or_target_encode"
@@ -274,7 +274,7 @@ class EDAInspector:
 
             corr = self.df[col].corr(y)
             if corr is not None and not np.isnan(corr) and abs(corr) > 0.95:
-                risks[col] = {
+                risks[col] = { # type: ignore
                     "risk": "extreme_correlation",
                     "correlation": round(float(corr), 4),
                     "recommended_action": "investigate_leakage_or_drop"

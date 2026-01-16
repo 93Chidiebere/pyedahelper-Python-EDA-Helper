@@ -6,8 +6,7 @@ Provides guided Exploratory Data Analysis tools with step-by-step AI suggestions
 
 # --- Core imports ---
 from .show import show
-from .core import show as core_show, example, topics, get_hint
-# from . import tools  # Uncomment if tools module exists
+from .core import example, topics, get_hint
 
 # --- Import the AI EDA guide ---
 from .nextstep import EdaGuide
@@ -15,11 +14,15 @@ from .nextstep import EdaGuide
 # --- Import decision-oriented inspector ---
 from .inspector import inspect, EDAInspector
 
+# --- UI helpers ---
+from .ui import summary
+
 # --- Initialize interactive guide ---
 _ai = EdaGuide()
 
-# --- Map simple user-friendly functions ---
-next = _ai.next  # lets users call eda.next("read_csv")
+# --- Public aliases (avoid shadowing built-ins) ---
+next_step = _ai.next
+inspect_df = inspect
 
 # --- Exported names ---
 __all__ = [
@@ -27,9 +30,9 @@ __all__ = [
     "example",
     "topics",
     "get_hint",
-    "next",
+    "next_step",
     "EdaGuide",
-    "inspect",
+    "inspect_df",
     "EDAInspector",
-    # "tools"  # Uncomment if needed
+    "summary",
 ]
