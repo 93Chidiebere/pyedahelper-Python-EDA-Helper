@@ -40,7 +40,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyedahelper',
-    version='1.0.7',
+    version='1.0.8',
     author='Chidiebere V. Christopher',
     author_email='vchidiebere.vc@gmail.com',
     description="An interactive cheat sheet, AI-powered guide for exploratory data analysis (EDA), and tools for data visualization, cleaning and feature engineering.",
