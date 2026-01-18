@@ -1,25 +1,25 @@
-# 🧠 pyedahelper - Simplify Your Exploratory Data Analysis (EDA)
+# **pyedahelper - Simplify Your Exploratory Data Analysis (EDA)**
 
 **pyedahelper** is an educational and practical Python library designed to make **Exploratory Data Analysis (EDA)** simple, guided, and fast, especially for **data analysts, students, and early-career data scientists** who want to spend more time analyzing data and less time remembering syntax.
 
 It's a lightweight, educational, and intelligent Python library that helps you perform Exploratory Data Analysis (EDA) faster — with guided suggestions, ready-to-use utilities, and clean visualizations.
 
 
-🌟 Key Features:
-- ⚡ A **smart EDA cheat sheet** (interactive and collapsible),
-- 💬 AI-guided EDA assistant — suggests the next logical step (e.g., “View top rows with df.head()”).
-- 🧩 A suite of **data tools** for real-world EDA tasks (loading, cleaning, feature engineering, visualization, and summaries),
-- 💬 Handy **code hints and examples** you can copy directly into your notebook.
+Key Features:
+- A **smart EDA cheat sheet** (interactive and collapsible),
+- AI-guided EDA assistant — suggests the next logical step (e.g., “View top rows with df.head()”).
+- A suite of **data tools** for real-world EDA tasks (loading, cleaning, feature engineering, visualization, and summaries),
+- Handy **code hints and examples** you can copy directly into your notebook.
 
 
 
-## 🌍 Why pyedahelper?
+## **Why pyedahelper**?
 
 Performing EDA often involves the use of numerous syntaxes to understand the dataset, it forces the narrative that good data professionals are those who know all the *Python syntaxes* by heart rather than those who can interprete accurately, the output of each of the EDA steps. And more importantly, Data Analysts spend more than 80% of their analytics time on iterative *EDA*, some of these hours spent checking documentary and *Googling* stuffs.
 
 `pyedahelper` solves this by combining **ready-to-use functions** for your data workflow, AI-powered guide with **inline learning** — you can *see, learn, and apply* the same steps.
 
-## ✨ What Problem Does pyedahelper Solve?
+## **What Problem Does pyedahelper Solve**?
 
 **Exploratory Data Analysis (EDA) is essential, but repetitive.**
 
@@ -37,7 +37,7 @@ Across projects, users repeatedly:
 
 
 
-## ⚙️ Installation
+## **Installation**
 
 ```bash
 
@@ -52,7 +52,7 @@ pip install pyedahelper
 pip install --upgrade pyedahelper
 
 ```
-## 🚀 Quick Start
+## Quick Start
 
 ``` python
 
@@ -62,14 +62,14 @@ import pandas as pd
 # Load your dataset
 df = pd.read_csv("data.csv")
 
-# 📚 Display the interactive EDA cheat-sheet
+# Display the interactive EDA cheat-sheet
 eda.show() -- for experienced analysts or
 eda.core.show() -- for total newbies
 
-# 🔍 Start guided suggestion
+# Start guided suggestion
 eda.next("read_csv")   # Suggests: "View first rows with df.head()"
 
-# 💡 View an example command with short explanation
+# View an example command with short explanation
 eda.core.example("describe")
 ```
 
@@ -82,15 +82,15 @@ df.head() → df.columns → df.shape → df.info() → df.describe() → ...
 If you want to skip a suggestion, simply type "Next".
 
 
-# 🔍 Modules Overview
+# Modules Overview
 
-1️⃣ EDA Guidance (AI Suggestion System)
+**EDA Guidance (AI Suggestion System)**
 
-The `next()` method in **pyedahelper** provides *contextual next-step suggestions* for your data analysis workflow.
+The `next_step()` method in **pyedahelper** provides *contextual next-step suggestions* for your data analysis workflow.
 
 Instead of remembering long commands, simply call:
 ```python
-eda.next("read_csv")
+eda.next_step("read_csv")
 ```
 …and it will suggest the next logical step in your EDA, cleaning, visualization, or modeling process.
 
@@ -174,20 +174,6 @@ Below is a list of common helper keywords and what next() will suggest for each 
 # This feature helps beginners and professionals alike stay productive and focused on insights rather than remembering syntax.
 
 
-## 5️⃣ Visualization Module
-
-Functions for exploring and visualizing data quickly.
-
-``` python
-from edahelper import visualization as vis
-
-vis.plot_correlation(df)
-vis.plot_distribution(df, "Age")
-vis.scatter(df, "Age", "Income", hue="Gender")
-
-```
-🎨 _Uses matplotlib and seaborn under the hood for fast, clean plots._
-
 # 📘 The Interactive Cheat-Sheet
 
 When you forget a syntax, simply call:
@@ -196,18 +182,18 @@ eda.show()
 
 ```
 
-✨ Displays a colorful grouped guide of:
+Displays a colorful grouped guide of:
 
-Data Loading
-Overview
-Missing Values
-Indexing & Grouping
-Visualization
-Feature Engineering
-NumPy & sklearn tips
+- Data Loading
+- Overview
+- Missing Values
+- Indexing & Grouping
+- Visualization
+- Feature Engineering
+- NumPy & sklearn tips
 
 
-## 🧑🏽‍💻 Example Workflow
+## Example Workflow
 
 ```
 import pandas as pd
@@ -216,21 +202,21 @@ from edahelper import inspect
 
 df = pd.read_csv("data.csv")
 
-eda.next("read_csv")
+eda.next_step("read_csv")
 df.head()
 
-eda.next("head")
+eda.next_step("head")
 df.columns
 
-eda.next("columns")
+eda.next_step("columns")
 df.info()
 
-inspect(df)
+inspect(df, target='target_column', time_col='date_col')
 
 ```
 
 
-## 📦 Project Structure
+## Project Structure
 
 ```text
 
@@ -245,7 +231,7 @@ edahelper/
 
 ```
 
-# 🛠 Requirements
+# Requirements
 
 Python 3.8+
 pandas
@@ -255,14 +241,14 @@ scikit-learn
 matplotlib
 rich (for colored terminal output)
 
-## 🧾 License
+## License
 
 MIT License © 2025
 
 Chidiebere V. Christopher
 Feel free to fork, contribute, or use it in your analytics workflow!
 
-## 🌟 Contributing
+## Contributing
 
 We welcome contributions — bug fixes, new EDA tools, or notebook examples.
 
